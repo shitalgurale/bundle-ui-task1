@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bundle & Save</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .bundle-container {
+      max-width: 380px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    .title {
+      text-align: center;
+      color: #007a42;
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .bundle-box {
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 15px;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .bundle-box.selected {
+      border-color: #007a42;
+      background: #f0fff7;
+    }
+
+    .bundle-box input[type="radio"] {
+      display: none;
+    }
+
+    .box-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .discount {
+      color: #007a42;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .old-price {
+      text-decoration: line-through;
+      color: #aaa;
+      font-size: 12px;
+      margin-left: 6px;
+    }
+
+    .tag {
+      background: #00b28f;
+      color: white;
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 10px;
+      font-weight: bold;
+      margin-bottom: 4px;
+      display: inline-block;
+    }
+
+    .variants {
+      margin-top: 12px;
+    }
+
+    .variant-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .variant-row span {
+      font-weight: bold;
+      font-size: 13px;
+    }
+
+    .variant-row select {
+      padding: 6px;
+      font-size: 14px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      flex: 1;
+    }
+
+    .summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .shipping {
+      color: #007a42;
+      font-weight: bold;
+    }
+
+    .total {
+      font-weight: bold;
+    }
+
+    .add-btn {
+      margin-top: 15px;
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      background: #007a42;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .add-btn:hover {
+      background: #006636;
+    }
+
+    .powered {
+      text-align: center;
+      font-size: 11px;
+      color: #aaa;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="bundle-container">
+  <h3 class="title">Bundle & Save</h3>
+
+  <!-- 1 Pair -->
+  <div class="bundle-box selected" data-price="195">
+    <label>
+      <input type="radio" name="bundle" checked>
+      <div class="box-header">
+        <div>
+          <strong>1 Pair</strong>
+          <div>DKK 195.00</div>
+        </div>
+        <div class="discount">50% OFF</div>
+      </div>
+    </label>
+    <div class="variants">
+      <div class="variant-row">
+        <span>#1</span>
+        <select>
+          <option>S</option>
+          <option>M</option>
+          <option>L</option>
+        </select>
+        <select>
+          <option>colour</option>
+          <option>Black</option>
+          <option>White</option>
+        </select>
+      </div>
+      <div class="variant-row">
+        <span>#2</span>
+        <select>
+          <option>S</option>
+          <option>M</option>
+          <option>L</option>
+        </select>
+        <select>
+          <option>colour</option>
+          <option>Black</option>
+          <option>White</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2 Pair -->
+  <div class="bundle-box" data-price="345">
+    <label>
+      <input type="radio" name="bundle">
+      <div class="box-header">
+        <div>
+          <strong>2 Pair</strong>
+          <div>DKK 345.00 <span class="old-price">DKK 195.00</span></div>
+        </div>
+        <div>
+          <span class="tag">Most Popular</span>
+          <div class="discount">40% OFF</div>
+        </div>
+      </div>
+    </label>
+  </div>
+
+  <!-- 3 Pair -->
+  <div class="bundle-box" data-price="528">
+    <label>
+      <input type="radio" name="bundle">
+      <div class="box-header">
+        <div>
+          <strong>3 Pair</strong>
+          <div>DKK 528.00</div>
+        </div>
+        <div class="discount">60% OFF</div>
+      </div>
+    </label>
+  </div>
+
+  <!-- Summary -->
+  <div class="summary">
+    <span class="shipping">Free 2 Day Shipping</span>
+    <span class="total">Total : DKK <strong id="total">195.00</strong></span>
+  </div>
+
+  <button class="add-btn">+ Add to Cart</button>
+  <p class="powered">© Powered by Pumper</p>
+</div>
+
+<script>
+  const bundles = document.querySelectorAll('.bundle-box');
+
+  bundles.forEach(box => {
+    box.addEventListener('click', () => {
+      bundles.forEach(b => b.classList.remove('selected'));
+      box.classList.add('selected');
+      box.querySelector('input[type="radio"]').checked = true;
+      const price = box.getAttribute('data-price');
+      document.getElementById('total').textContent = parseFloat(price).toFixed(2);
+    });
+  });
+</script>
+
+</body>
+</html>
