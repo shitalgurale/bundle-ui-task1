@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>BOGO Bundle</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .bundle-ui {
+      max-width: 370px;
+      margin: 20px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid #eee;
+    }
+
+    .top-title {
+      text-align: center;
+      color: #ff4fa0;
+      font-weight: 700;
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .bundle-box {
+      border: 2px solid #eee;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .bundle-box.selected {
+      border-color: #ff4fa0;
+      background: #fff0f7;
+    }
+
+    .bundle-box.popular {
+      border-color: #ff3c2e;
+    }
+
+    .bundle-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .left strong {
+      font-size: 15px;
+    }
+
+    .tag {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-top: 4px;
+      width: fit-content;
+    }
+
+    .tag.pink {
+      background-color: #ff4fa0;
+      color: white;
+    }
+
+    .tag.red {
+      background-color: #ff3c2e;
+      color: white;
+    }
+
+    .note {
+      font-size: 12px;
+      color: #555;
+      margin-top: 4px;
+    }
+
+    .right {
+      text-align: right;
+    }
+
+    .price {
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    .strike {
+      text-decoration: line-through;
+      font-size: 12px;
+      color: #aaa;
+    }
+
+    .badge {
+      background: #ff4fa0;
+      color: white;
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    .variant-selectors {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px solid #eee;
+    }
+
+    .selector {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .selector span {
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .selector select {
+      padding: 6px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      flex: 1;
+    }
+
+    .avatars {
+      display: flex;
+      margin-left: 30px;
+      margin-top: 5px;
+    }
+
+    .avatars img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 2px solid white;
+      box-shadow: 0 0 0 1px #ccc;
+      margin-left: -10px;
+    }
+
+    .footer-info {
+      text-align: center;
+      margin-top: 25px;
+    }
+
+    .delivery {
+      color: #ff4fa0;
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .total {
+      font-size: 15px;
+      margin-bottom: 12px;
+    }
+
+    .add-btn {
+      width: 100%;
+      background: #ff4fa0;
+      color: white;
+      border: none;
+      padding: 14px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(255, 79, 160, 0.2);
+      transition: background 0.3s;
+    }
+
+    .add-btn:hover {
+      background: #e44391;
+    }
+
+    .powered {
+      font-size: 11px;
+      color: #aaa;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="bundle-ui">
+  <h4 class="top-title">YAY! It's BOGO</h4>
+
+  <!-- 1 Unit -->
+  <div class="bundle-box selected" data-price="10.00">
+    <label>
+      <input type="radio" name="unit" checked>
+      <div class="bundle-label">
+        <div class="left">
+          <strong>1 Unit</strong>
+          <span class="tag pink">10% Off</span>
+          <div class="note">Standard Price</div>
+        </div>
+        <div class="right">
+          <div class="price">$10.00 USD</div>
+          <div class="strike">$24.00 USD</div>
+        </div>
+      </div>
+    </label>
+  </div>
+
+  <!-- 2 Unit -->
+  <div class="bundle-box popular" data-price="18.00">
+    <label>
+      <input type="radio" name="unit">
+      <div class="bundle-label">
+        <div class="left">
+          <strong>2 Unit</strong>
+          <span class="tag red">20% Off</span>
+        </div>
+        <div class="right">
+          <div class="badge">MOST POPULAR</div>
+          <div class="price">$18.00 USD</div>
+          <div class="strike">$24.00 USD</div>
+        </div>
+      </div>
+    </label>
+    <div class="variant-selectors">
+      <div class="selector">
+        <span>#1</span>
+        <select><option>S</option></select>
+        <select><option>Black</option></select>
+      </div>
+      <div class="selector">
+        <span>#2</span>
+        <select><option>S</option></select>
+        <select><option>Colour</option></select>
+      </div>
+      <div class="avatars">
+        <img src="https://i.pravatar.cc/28?img=5" />
+        <img src="https://i.pravatar.cc/28?img=7" />
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 Unit -->
+  <div class="bundle-box" data-price="24.00">
+    <label>
+      <input type="radio" name="unit">
+      <div class="bundle-label">
+        <div class="left">
+          <strong>3 Unit</strong>
+          <span class="tag pink">30% Off</span>
+        </div>
+        <div class="right">
+          <div class="price">$24.00 USD</div>
+          <div class="strike">$36.00 USD</div>
+        </div>
+      </div>
+    </label>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer-info">
+    <p class="delivery">Free Delivery</p>
+    <p class="total">Total : <strong id="total">$10.00 USD</strong></p>
+    <button class="add-btn">+ Add to Cart</button>
+    <p class="powered">© Powered by Pumper</p>
+  </div>
+</div>
+
+<script>
+  const bundles = document.querySelectorAll('.bundle-box');
+  bundles.forEach(bundle => {
+    bundle.addEventListener('click', () => {
+      bundles.forEach(b => b.classList.remove('selected'));
+      bundle.classList.add('selected');
+      bundle.querySelector('input[type="radio"]').checked = true;
+      const price = bundle.getAttribute('data-price');
+      document.getElementById('total').textContent = `$${parseFloat(price).toFixed(2)} USD`;
+    });
+  });
+</script>
+
+</body>
+</html>
